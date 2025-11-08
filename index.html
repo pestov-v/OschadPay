@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OschadPay - Payment Processing System Gallery</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .header h1 {
+        color: #2c3e50;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .header p {
+        color: #7f8c8d;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .gallery-item {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-item-content {
+        padding: 20px;
+      }
+
+      .gallery-item h3 {
+        color: #2c3e50;
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .gallery-item p {
+        color: #7f8c8d;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 12px 24px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: background 0.3s ease;
+      }
+
+      .back-link:hover {
+        background: #2980b9;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+
+      .modal-content {
+        position: relative;
+        margin: auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 1000px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .modal img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: #3498db;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px;
+          margin: 10px;
+        }
+
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .gallery-item img {
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="https://portfolio-pestov-v.vercel.app/" class="back-link"
+        >← Back to Portfolio</a
+      >
+
+      <div class="header">
+        <h1>OschadPay - Payment Processing System</h1>
+        <p>
+          Advanced payment processing system and terminal management for
+          financial institutions
+          <a href="https://online.oschadpay.ua/" target="_blank"
+            >https://online.oschadpay.ua/</a
+          >
+        </p>
+      </div>
+
+      <div class="gallery">
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/main.webp')"
+        >
+          <img src="gallery/images/main.webp" alt="OschadPay Main Dashboard" />
+          <div class="gallery-item-content">
+            <h3>Main Dashboard</h3>
+            <p>
+              Main OschadPay system interface with navigation and general
+              statistics
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/dash.webp')"
+        >
+          <img src="gallery/images/dash.webp" alt="Dashboard" />
+          <div class="gallery-item-content">
+            <h3>Dashboard</h3>
+            <p>Management panel with key indicators and payment analytics</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/transactions.webp')"
+        >
+          <img
+            src="gallery/images/transactions.webp"
+            alt="Transactions Management"
+          />
+          <div class="gallery-item-content">
+            <h3>Transaction Management</h3>
+            <p>Detailed view and management of all payment transactions</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/terminals.webp')"
+        >
+          <img src="gallery/images/terminals.webp" alt="Terminal Management" />
+          <div class="gallery-item-content">
+            <h3>Terminal Management</h3>
+            <p>Payment terminal monitoring and configuration system</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/cashiers.webp')"
+        >
+          <img src="gallery/images/cashiers.webp" alt="Cashier Management" />
+          <div class="gallery-item-content">
+            <h3>Cashier Management</h3>
+            <p>Cashier management system with access rights configuration</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/goods.webp')"
+        >
+          <img src="gallery/images/goods.webp" alt="Goods Management" />
+          <div class="gallery-item-content">
+            <h3>Goods Management</h3>
+            <p>
+              Catalog of goods and services with editing and configuration
+              capabilities
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/cash.webp')"
+        >
+          <img src="gallery/images/cash.webp" alt="Cash Operations" />
+          <div class="gallery-item-content">
+            <h3>Cash Operations</h3>
+            <p>Module for conducting cash operations and cash management</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/fiscal-day.webp')"
+        >
+          <img src="gallery/images/fiscal-day.webp" alt="Fiscal Day" />
+          <div class="gallery-item-content">
+            <h3>Fiscal Day</h3>
+            <p>Fiscal day management and cash operations reporting</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/bank-day.webp')"
+        >
+          <img src="gallery/images/bank-day.webp" alt="Bank Day" />
+          <div class="gallery-item-content">
+            <h3>Bank Day</h3>
+            <p>Bank day operations and reconciliation with banking systems</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/settings.webp')"
+        >
+          <img src="gallery/images/settings.webp" alt="System Settings" />
+          <div class="gallery-item-content">
+            <h3>System Settings</h3>
+            <p>System configuration, parameters and security settings</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          onclick="openModal('gallery/images/news.webp')"
+        >
+          <img src="gallery/images/news.webp" alt="News and Updates" />
+          <div class="gallery-item-content">
+            <h3>News and Updates</h3>
+            <p>Messaging system, news and updates for users</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="" />
+      </div>
+    </div>
+
+    <script>
+      function openModal(imageSrc) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        modal.style.display = "block";
+        modalImg.src = imageSrc;
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+      }
+
+      // Close modal when clicking outside the image
+      window.onclick = function (event) {
+        const modal = document.getElementById("imageModal");
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
